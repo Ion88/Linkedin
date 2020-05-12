@@ -3,21 +3,21 @@ import logo from "./logo.svg";
 import "./App.css";
 import Message from "./Message";
 
-class App extends Component<any> {
-  componentWillMount() {
-    console.log("Almost there...");
-  }
+const initialState = {
+  name: "Ion",
+  message: "TypeScript is cool",
+};
 
-  componentDidMount() {
-    console.log("Finally say ... Hello!");
-  }
+type State = Readonly<typeof initialState>;
 
+class App extends Component<any, State> {
+  readonly state: State = initialState;
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Message message="Checking if Denis is indeed pitushara" />
+          <Message name={this.state.name} message={this.state.message} />
         </header>
       </div>
     );

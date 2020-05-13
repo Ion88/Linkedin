@@ -2,24 +2,37 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser-polyfill.js"></script>
     <script type="text/babel">
-      var cat = {
-        // ES6
-        meow(times) {
-          console.log("meow ".repeat(times));
-        },
-        //Old javascript
-        purr: function (times) {
-          console.log(Array(times + 1).join("purr "));
-        },
-        snore: function (times) {
-          console.log(Array(times + 1).join("snore "));
-        },
-      };
+      var title = "ES6";
+      console.log(typeof title[Symbol.iterator]);
 
-      cat.meow(3);
-      cat.purr(2);
-      cat.snore(4);
+      var iterateIt = title[Symbol.iterator]();
+      console.log(iterateIt.next());
+      console.log(iterateIt.next());
+      console.log(iterateIt.next());
+      console.log(iterateIt.next());
+
+      function tableReady(arr) {
+        var nextindex = 0;
+        return {
+          next() {
+            if (nextindex < arr.length) {
+              return { value: arr.shift(), done: false };
+            } else {
+              return { done: true };
+            }
+          },
+        };
+      }
+
+      var waitingList = ["Ion", "Valea", "mama"];
+      var iterateList = tableReady(waitingList);
+
+      console.log(`${iterateList.next().value}, your table is ready`);
+      console.log(`${iterateList.next().value}, your table is ready`);
+      console.log(`${iterateList.next().value}, your table is ready`);
+      console.log(`${iterateList.next().done}`);
     </script>
   </head>
   <body></body>

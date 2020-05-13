@@ -1,36 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style type="text/css">
-      section > div {
-        height: 100px;
-        width: 100;
-        background-color: red;
-        float: left;
-        margin: 3px;
-        cursor: pointer;
-      }
-    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
     <script type="text/babel">
-      var course = new Map();
-      course.set("react", { description: "ui" });
-      course.set("jest", { description: "testing" });
+      var cat = {
+        // ES6
+        meow(times) {
+          console.log("meow ".repeat(times));
+        },
+        //Old javascript
+        purr: function (times) {
+          console.log(Array(times + 1).join("purr "));
+        },
+        snore: function (times) {
+          console.log(Array(times + 1).join("snore "));
+        },
+      };
 
-      console.log(course);
-      console.log(course.react);
-      console.log(course.get("react"));
-
-      var details = new Map([
-        [new Date(), "today"],
-        ["items", [1, 2]],
-      ]);
-
-      console.log(details.size);
-
-      details.forEach(function (item) {
-        console.log(item);
-      });
+      cat.meow(3);
+      cat.purr(2);
+      cat.snore(4);
     </script>
   </head>
   <body></body>

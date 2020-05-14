@@ -1,16 +1,46 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from "react";
+import { render } from "react-dom";
 
-const style = {
-  backgroundColor: "orange",
-  color: "white",
-  fontFamily: "Arial",
+let footballData = {
+  total: 50,
+  home: 25,
+  guest: 15,
+  goal: 100,
 };
 
-ReactDOM.render(
-  <div style={style}>
-    <h1 id="heading element">Hello World!</h1>
-    <p>We're glad you're here!</p>
-  </div>,
+const getPercent = (decimals) => {
+  return decimals * 100 + "%";
+};
+
+const calcGoalProgress = (total, goal) => {
+  return getPercent(total / goal);
+};
+
+const FootballDayCounter = ({ total, home, guest, goal }) => {
+  return (
+    <section>
+      <div>
+        <p>Total: {total}</p>
+      </div>
+      <div>
+        <p>Home: {home}</p>
+      </div>
+      <div>
+        <p>Guest: {guest}</p>
+      </div>
+      <div>
+        <p>Goal progress: {calcGoalProgress(total, goal)}</p>
+      </div>
+    </section>
+  );
+};
+
+render(
+  <FootballDayCounter
+    total={footballData.total}
+    home={footballData.home}
+    guest={footballData.guest}
+    goal={footballData.goal}
+  />,
   document.getElementById("root")
 );

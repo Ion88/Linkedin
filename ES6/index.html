@@ -4,18 +4,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser-polyfill.js"></script>
     <script type="text/babel">
-      const getPeopleInSpace = () =>
-        fetch("http://api.open-notify.org/astros.json").then((res) =>
-          res.json()
-        );
+      var attendance = {
+        _list: [],
+        set addName(name) {
+          this._list.push(name);
+        },
+        get list() {
+          return this._list.join(", ");
+        },
+      };
+      attendance.addName = "Ion";
+      console.log("Underscore list (prop)", attendance._list);
+      console.log("List getter", attendance.list);
 
-      const spaceNames = () =>
-        getPeopleInSpace()
-          .then((json) => json.people)
-          .then((people) => people.map((p) => p.name))
-          .then((names) => names.join(", "));
+      attendance.addName = "Valea";
+      attendance.addName = "mama";
+      console.log(attendance.list);
 
-      spaceNames().then(console.log);
+      console.log("=========== Classes ===========");
+
+      class Hike {
+        constructor(distance, pace) {
+          this.distance = distance;
+          this.pace = pace;
+        }
+        get lengthInHours() {
+          return `${this.calcLength()}, hours`;
+        }
+        calcLength() {
+          return this.distance / this.pace;
+        }
+      }
+
+      const mtEverest = new Hike(10, 2);
+      console.log(mtEverest.lengthInHours);
     </script>
   </head>
   <body></body>
